@@ -3,22 +3,31 @@ import logo from './logo.svg';
 import { Navbar, NavbarBrand } from 'reactstrap'
 import './App.css';
 import Menu from './components/MenuComponent/MenuComponent';
+import DISHES from './components/Shared/dishes';
 
-function App() {
-  return (
-    <div className="App">
-      <Navbar dark color="primary">
-        <div className='container'>
-          <NavbarBrand href="/"> 
-          Ristorante con Fusion
-          </NavbarBrand>
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      dishes: DISHES
+    }
+  }
 
-        </div>
-      </Navbar>
-      <Menu />
+  render () {
+    return (
+      <div className="App">
+        <Navbar dark color="primary">
+          <div className='container'>
+            <NavbarBrand href="/"> 
+            Ristorante con Fusion
+            </NavbarBrand>
+          </div>
+        </Navbar>
+        <Menu dishes={this.state.dishes} />
+      </div>
+    );
+  }
+  }
 
-    </div>
-  );
-}
 
 export default App;
