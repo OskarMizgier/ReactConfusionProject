@@ -17,8 +17,8 @@ constructor(props) {
 renderDish () {
     if(this.props.dish != null) {
         return (
-        <div className='row'>
-        <div className='col-12 col-md-5'>
+            <div className='row'>
+        <div className='col-12 col-md-5 m-1'>
         <Card>
             <CardImg src={this.props.dish.image} alt='' />
             <CardBody>
@@ -27,7 +27,7 @@ renderDish () {
             </CardBody>
         </Card>
         </div>
-        <div id='CommentClass' className='col-12 col-md-5'>
+        <div id='CommentClass' className='col-12 col-md-5 m-1'>
             <Card>
             <CardBody>
                 <CardTitle>Comments:</CardTitle>
@@ -43,8 +43,9 @@ renderDish () {
 
 
         </div>
-          
         </div>
+          
+ 
             )
     } else 
         return <div>
