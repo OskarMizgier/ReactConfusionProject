@@ -15,15 +15,15 @@ constructor(props) {
 
 
 renderDish () {
-    if(this.props.selectedDish != null) {
+    if(this.props.dish != null) {
         return (
         <div className='row'>
         <div className='col-12 col-md-5'>
         <Card>
-            <CardImg src={this.props.selectedDish.image} alt='' />
+            <CardImg src={this.props.dish.image} alt='' />
             <CardBody>
-                <CardTitle>{this.props.selectedDish.name}</CardTitle>
-                <CardText>{this.props.selectedDish.description}</CardText>
+                <CardTitle>{this.props.dish.name}</CardTitle>
+                <CardText>{this.props.dish.description}</CardText>
             </CardBody>
         </Card>
         </div>
@@ -31,7 +31,7 @@ renderDish () {
             <Card>
             <CardBody>
                 <CardTitle>Comments:</CardTitle>
-                    {   this.props.selectedDish.comments.map((comment) => {
+                    {   this.props.dish.comments.map((comment) => {
                         return <ul key={comment.id} className='list-unstyled'>
                                 <li>{comment.author + ' ' + comment.date.substring(0, 10) }</li>
                                  <li>{comment.comment}</li>

@@ -1,9 +1,7 @@
 import React from 'react';
-import logo from './logo.svg';
-import { Navbar, NavbarBrand } from 'reactstrap'
 import './App.css';
-import Menu from './components/MenuComponent/MenuComponent';
 import { DISHES } from './components/Shared/dishes';
+import Main from './components/MainComponent'
 
 class App extends React.Component {
   constructor(props) {
@@ -13,21 +11,14 @@ class App extends React.Component {
     }
   }
 
-  render () {
+  render() {
     return (
       <div className="App">
-        <Navbar dark color="primary">
-          <div className='container'>
-            <NavbarBrand href="/"> 
-            Ristorante con Fusion
-            </NavbarBrand>
-          </div>
-        </Navbar>
-        <Menu dishes={this.state.dishes} />
+        <Main />
       </div>
     );
   }
-  }
+}
 
 
 export default App;
