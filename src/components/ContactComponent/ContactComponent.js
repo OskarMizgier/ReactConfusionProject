@@ -1,9 +1,43 @@
 import React from 'react';
-import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Breadcrumb, BreadcrumbItem, Button, Form, FormGroup, Label, Input, Col } from 'reactstrap';
 import { Link  } from 'react-router-dom';
 
-function Contact(props) {
-    return(
+class  Contact extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            firstname: '',
+            lastname: '',
+            telnum: '',
+            email: '',
+            agree: false,
+            contactType: 'Tel.',
+            message: '',
+        }
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
+    }
+
+
+
+handleInputChange(event) {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value
+    const name = target.name;
+    this.setState({
+        [name]: value
+    })
+}
+
+handleSubmit(event) {
+    console.log('Current state is ' + JSON.stringify(this.state))
+    alert('Current state is ' + JSON.stringify(this.state))
+    event.preventDefault();
+}
+
+
+render () {
+    return (
         <div className="container">
 
 <div className="row">
@@ -42,8 +76,61 @@ function Contact(props) {
                     </div>
                 </div>
             </div>
+            <div className='row row-content'>
+                <div className='col-12'>
+                    <h3 className='mb-4'>Send us your Feedback</h3>
+                </div>
+                <div className='col-12 col-md-9'>
+                    <Form onSubmit={this.handleSubmit}>
+                    <div className="form-row">
+                        <div className="col">
+                             <input onChange={this.handleInputChange} id='firstname' name='firstname' type="text" class="form-control" placeholder="First name" value={this.state.firstname}></input>
+                         </div>
+                    <div className="col">
+                             <input onChange={this.handleInputChange} name='lastname' id='lastname' type="text" class="form-control" placeholder="Last name" value={this.state.lastname}></input>
+                     </div>
+                    </div>
+                    <div className='form-row mt-4'>
+                    <div className="col-6">
+                             <input onChange={this.handleInputChange} name='telnum' id='telnum' type="tel" class="form-control" placeholder="Tel. Number" value={this.state.telnum}></input>
+                     </div>
+                     <div className="col-6">
+                             <input onChange={this.handleInputChange} name='email' id='email' type="email" class="form-control" placeholder="Email" value={this.state.email}></input>
+                     </div>
+                    </div>
+                    <div className='form-row mt-4'>
+                       <div className='col-6'>
+                           <input onChange={this.handleInputChange} className='mr-1' id='agree' type='checkbox' name='agree' checked={this.state.agree}></input>
+                           <label for='agree'><h6><strong> May we contact you?</strong></h6></label>
+                       </div>
+                       <div className='col-3'>
+                           <select  onChange={this.handleInputChange} className='custom-select mr-sm-2' type='select' id='contactType' name='contactType' value={this.state.contactType}>
+                               <option selected>Tel.</option>
+                               <option>Email</option>
+                           </select>
+                       </div>
+                    </div>
+                    <FormGroup className='mt-4' row>
+                                <Col md={12}>
+                                    <Input type="textarea" id="message" name="message"
+                                        rows="12" placeholder='Please provide your feedback'
+                                        value={this.state.message}
+                                        onChange={this.handleInputChange}></Input>
+                                </Col>
+                            </FormGroup>
+                    <div className='form-row mt-4'>
+                        <div className='col-12'>
+                            <button className='btn btn-primary'>Send Feedback</button>
+                        </div>
+                    </div>
+                    
+                    </Form>
+                </div>
+            </div>
         </div>
     );
+}
+   
 }
 
 export default Contact;
